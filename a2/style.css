@@ -29,10 +29,6 @@ body{
     color: white;
     margin-bottom: 0px;
 }
-@font-face {
-    font-family: Showtime;
-    src: url(font/Showtime.ttf);
-}
 .head-strip {
     background: url(media/filmstrip.jpg);
     background-repeat: repeat-x;
@@ -43,22 +39,29 @@ body{
 .navbar {
     background-color: #202020;
 }
-.btn-primary {
+.btn.btn-primary {
     font-family: "Roboto Slab";
     color: #fff;
     background-color: transparent;
     border-color: transparent;
     margin: 10px;
 }
-.btn-primary:hover {
+.btn.btn-primary:hover {
     font-family: "Roboto Slab";
     font-weight: bold;
-    color: #000000;
+    color: #C00000;
     border: 2px;
     border-style: dashed;
     border-color: black;
-    background-color: #757575;
+    background-color: #E0E0E0;
 
+}
+.btn.btn-primary:active, .btn.btn-primary:focus, .btn.btn-primary:active:focus {
+    font-family: "Roboto Slab";
+    background: #757575;
+    background-color: #757575;
+    color: #1b1b1b;
+    border: transparent;
 }
 #about-us-header{
      /* Creative Commons image sourced from https://www.pexels.com/photo/people-sitting-on-gang-chairs-2774556/ and used for educational purposes only */
@@ -74,31 +77,37 @@ body{
     color: white;
     padding: 60px;
 }
-#showing-header {
-    font-family: Showtime;
+#showing-header, #pricing-header {
+    font-family: "Bungee Inline";
     text-align: center;
-    color: #ff7591;
+    color: #C00000;
     padding: 30px;
+    background-image: url(media/cinema-sign.png);
+    background-size: auto 100%;
+    opacity: 0.9;
 }
-#movie-icon {
-    vertical-align: bottom;
+#movie-icon, #tickets-icon {
+    vertical-align: baseline;
+}
+#tickets-icon {
+    rotate: -30deg;
 }
 @media screen and (min-width: 901px) {
-    #showing-header {
+    #showing-header, #pricing-header {
         font-size: 70px;
     }
-    #movie-icon {
-        height: 80px;
+    #movie-icon, #tickets-icon {
+        height: 60px;
     }
     #TopBtn {
         width: 70px;
     }
 }
 @media screen and (max-width: 900px) and (min-width: 601px) {
-    #showing-header {
-        font-size: 50px;
+    #showing-header, #pricing-header {
+        font-size: 60px;
     }
-    #movie-icon {
+    #movie-icon, #tickets-icon {
         height: 50px;
     }
     #TopBtn {
@@ -106,17 +115,17 @@ body{
     }
 }
 @media screen and (max-width: 600px) {
-    #showing-header {
+    #showing-header, #pricing-header {
         font-size: 40px;
     }
-    #movie-icon {
+    #movie-icon, #tickets-icon {
         height: 40px;
     }
     #TopBtn {
         width: 50px;
     }
 }
-#About-us, #now-showing {
+#About-us, #now-showing, #pricing {
     background-color: #202020;
     padding: 30px;
 }
@@ -125,12 +134,14 @@ body{
     background-repeat: repeat-x;
     background-size: contain;
     height: 30px;
+    opacity: 0.8;
 }
 .card {
     border-style: groove;
     border-width: 5px;
     border-color: #202020;
     padding: 5px;
+    background-color: #E0E0E0;
 }
 .card-title, .card-text {
     font-family: "Roboto Slab";
@@ -151,4 +162,13 @@ body{
     float: right;
     right: 0px;
     left: 90%;
+}
+#pricing-header {
+    text-align: center;
+}
+#price-table {
+    text-align: center;
+}
+.price-heading {
+    font-weight: bold;
 }
