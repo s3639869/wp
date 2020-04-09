@@ -63,6 +63,10 @@ body{
     color: #1b1b1b;
     border: transparent;
 }
+@font-face {
+    font-family: Showtime;
+    src: url(font/Showtime.ttf);
+}
 #about-us-header{
      /* Creative Commons image sourced from https://www.pexels.com/photo/people-sitting-on-gang-chairs-2774556/ and used for educational purposes only */
     background-image: url(media/about-us-header-img.jpg);
@@ -78,13 +82,13 @@ body{
     padding: 60px;
 }
 #showing-header, #pricing-header {
-    font-family: "Bungee Outline";
+    font-family: Showtime;
     text-align: center;
     color: #C00000;
     padding: 30px;
     background-image: url(media/cinema-sign.png);
     background-size: auto 100%;
-    opacity: 0.9;
+    opacity: 0.85;
 }
 #movie-icon, #tickets-icon {
     vertical-align: baseline;
