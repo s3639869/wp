@@ -26,10 +26,9 @@
   <link id='stylecss' type="text/css" rel="stylesheet" href="style.css">
 
   <!-- Link to web font-->
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;1,400;1,600&display=swap"
-    rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Slab">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Bungee+Shade">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Bitter">
 
   <!-- Link to web icon-->
   <!-- Creative Commons image sourced from https://www.freelogodesign.org/preview?lang=en&name=&logo=3cb08b7e-706d-4539-a663-82c8ea221204 and used for educational purposes only -->
@@ -40,7 +39,7 @@
 
 <body data-spy="scroll" data-target="#navigation" data-method="auto">
   <div class="container">
-    <header>
+    <header id="top">
       <div class="jumbotron">
         <p id="company-name">CINEMAX</p>
         <!-- Creative Commons image sourced from https://www.freelogodesign.org/preview?lang=en&name=&logo=3cb08b7e-706d-4539-a663-82c8ea221204 and used for educational purposes only -->
@@ -65,7 +64,7 @@
     <div class="head-strip"></div>
     <main>
       <article id='About-us'>
-        <h1 id="about-us-header">About Us</h1>
+        <h1 id="about-us-header">ABOUT US</h1>
         <p>Cinemax is a movie theatre that was established to serve local movie enthuasiasts. </p>
         <p>Eventhough Cinemax was founded a long time ago, our facilites has recently been renovated to make the
           experience of movie going even more enjoyable.</p>
@@ -130,14 +129,69 @@
       <div id="break">
       </div>
       <section id="pricing">
-        <h1 id="pricing-header"><img src="media/tickets.png" id="tickets-icon">TICKET_PRICES</h1>
-        <div class="row" id="price-table">
-          <div class="col-md-4 price-heading">Seat Type</div>
-          <div class="col-md-4 price-heading">Monday & Wednesday
-          <br> 12PM Weekday
-          </div>
-          <div class="col-md-4 price-heading">All other times</div>
+        <h1 id="pricing-header"><img src="media/tickets.png" id="tickets-icon">TICKET PRICES</h1>
+        <br>
+        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Illo aut nulla, cumque repellendus aperiam non
+          saepe doloribus quod id quis provident enim sed perferendis eligendi illum voluptate cupiditate,
+          exercitationem corrupti est iure nobis repudiandae hic sapiente aliquid. Perspiciatis temporibus illum sed
+          sequi? Quia, ad? Voluptatum qui doloremque quis cum et, cumque voluptatem nobis magnam recusandae. Tenetur
+          quis sint quas animi provident vero, porro sed doloribus. Voluptatem soluta nihil impedit unde? Eligendi non
+          possimus maxime itaque, voluptatum quae nesciunt expedita reprehenderit earum numquam aperiam facere ad
+          obcaecati. Accusamus, veritatis dignissimos. Hic maxime ratione porro! Ex repellendus totam, placeat
+          similique
+          voluptate quod facilis culpa id et minima consequatur veniam excepturi ea. Ratione porro ipsa minima non
+          magnam vero hic iure molestiae illum aliquam repellat perferendis ex maiores est beatae delectus in commodi
+          quae, cupiditate optio sunt soluta consequatur error sed. Voluptatem delectus rem praesentium iste, natus
+          eaque expedita assumenda modi atque? Doloremque!</p>
+          <br>
+        <div class="table-responsive">
+          <table class="table" id="price-table">
+            <thead id="price-head">
+              <tr>
+                <th scope="col">Seat Type</th>
+                <th scope="col">
+                  <p id="Sale-col"><span class="badge badge-success">ALL DAY</span> Monday & Friday <br>
+                    <hr style="border: white solid 1px;"> 12PM <span class="badge badge-success">EVERY</span> weekday
+                  </p>
+                </th>
+                <th scope="col">All other times</th>
+              </tr>
+            </thead>
+            <tbody id="price-body">
+              <tr>
+                <th scope="row">Standard Adult</th>
+                <td>14.00</td>
+                <td>19.80</td>
+              </tr>
+              <tr>
+                <th scope="row">Standard Concession</th>
+                <td>12.50</td>
+                <td>17.50</td>
+              </tr>
+              <tr>
+                <th scope="row">Standard Child</th>
+                <td>11.00</td>
+                <td>15.30</td>
+              </tr>
+              <tr>
+                <th scope="row">First Class Adult</th>
+                <td>24.00</td>
+                <td>30.00</td>
+              </tr>
+              <tr>
+                <th scope="row">First Class Concession</th>
+                <td>22.50</td>
+                <td>27.00</td>
+              </tr>
+              <tr>
+                <th scope="row">First Class Child</th>
+                <td>21.00</td>
+                <td>24.00</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
+
         <br>
         <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Illo aut nulla, cumque repellendus aperiam non
           saepe doloribus quod id quis provident enim sed perferendis eligendi illum voluptate cupiditate,
@@ -155,7 +209,7 @@
       <div id="break">
       </div>
       <section id="now-showing">
-        <h1 id="showing-header"><img src="media/movie.png" id="movie-icon">NOW_SHOWING</h1>
+        <h1 id="showing-header"><img src="media/movie.png" id="movie-icon">NOW SHOWING</h1>
         <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Illo aut nulla, cumque repellendus aperiam non
           saepe doloribus quod id quis provident enim sed perferendis eligendi illum voluptate cupiditate,
           exercitationem corrupti est iure nobis repudiandae hic sapiente aliquid. Perspiciatis temporibus illum sed
@@ -169,8 +223,8 @@
           quae, cupiditate optio sunt soluta consequatur error sed. Voluptatem delectus rem praesentium iste, natus
           eaque expedita assumenda modi atque? Doloremque!</p>
         <div class="row row-cols-1 row-cols-md-2">
-          <div class="col">
-            <div class="card h-100">
+          <div class="col d-flex">
+            <div class="card mb-4 flex-fill">
               <div class="row no-gutters">
                 <div class="col-md-6">
                   <img src="media/avengers.jpg" class="card-img" alt="Avengers Endgame Poster">
@@ -189,8 +243,8 @@
               </div>
             </div>
           </div>
-          <div class="col">
-            <div class="card h-100">
+          <div class="col d-flex">
+            <div class="card mb-4 flex-fill">
               <div class="row no-gutters">
                 <div class="col-md-6">
                   <img src="media/topend-wedding.jpg" class="card-img" alt="Top End Wedding Poster">
@@ -209,8 +263,8 @@
           </div>
         </div>
         <div class="row row-cols-1 row-cols-md-2">
-          <div class="col">
-            <div class="card h-100">
+          <div class="col d-flex">
+            <div class="card mb-4 flex-fill">
               <div class="row no-gutters">
                 <div class="col-md-6">
                   <img src="media/dumbo.jpg" class="card-img" alt="Dumbo Poster">
@@ -227,8 +281,8 @@
               </div>
             </div>
           </div>
-          <div class="col">
-            <div class="card h-100">
+          <div class="col d-flex">
+            <div class="card mb-4 flex-fill">
               <div class="row no-gutters">
                 <div class="col-md-6">
                   <img src="media/happy-prince.jpg" class="card-img" alt="The Happy Prince Poster">
@@ -247,7 +301,28 @@
           </div>
         </div>
 
-
+      </section>
+      <div id="break">
+      </div>
+      <section id="synopsis-area">
+        <h1 id="synopsis-header">MOVIE SYNOPSIS</h1>
+        <div class="row">
+          <div class="col-6 border">
+            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Illo aut nulla, cumque repellendus aperiam non
+              saepe doloribus quod id quis provident enim sed perferendis eligendi illum voluptate cupiditate,
+              exercitationem corrupti est iure nobis repudiandae hic sapiente aliquid. Perspiciatis temporibus illum sed
+              sequi? Quia, ad? Voluptatum qui doloremque quis cum et, cumque voluptatem nobis magnam recusandae. Tenetur
+              quis sint quas animi provident vero, porro sed doloribus. Voluptatem soluta nihil impedit unde? Eligendi non
+              possimus maxime itaque, voluptatum quae nesciunt expedita reprehenderit earum numquam aperiam facere ad
+              obcaecati. Accusamus, veritatis dignissimos. Hic maxime ratione porro! Ex repellendus totam, placeat
+              similique
+              voluptate quod facilis culpa id et minima consequatur veniam excepturi ea. Ratione porro ipsa minima non
+              magnam vero hic iure molestiae illum aliquam repellat perferendis ex maiores est beatae delectus in commodi
+              quae, cupiditate optio sunt soluta consequatur error sed. Voluptatem delectus rem praesentium iste, natus
+              eaque expedita assumenda modi atque? Doloremque!</p>
+          </div>
+          <div class="col-6"></div>
+        </div>
       </section>
 
     </main>
