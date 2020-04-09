@@ -1,41 +1,219 @@
 <!DOCTYPE html>
 <html lang='en'>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Assignment 2</title>
-    
-    <!-- Keep wireframe.css for debugging, add your css to style.css -->
-    <link id='wireframecss' type="text/css" rel="stylesheet" href="../wireframe.css" disabled> 
-    <link id='stylecss' type="text/css" rel="stylesheet" href="../style.css">
 
-    <script src='../wireframe.js'></script>
-  </head>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Assignment 2</title>
 
-  <body>
+  <!-- Keep wireframe.css for debugging, add your css to style.css -->
+  <link id='wireframecss' type="text/css" rel="stylesheet" href="../wireframe.css" disabled>
 
+  <!-- Add bootstrap-->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
+  <!-- Link to style.css -->
+  <link id='stylecss' type="text/css" rel="stylesheet" href="style.css">
+
+  <!-- Link to web font-->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;1,400;1,600&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Slab">
+
+  <!-- Link to web icon-->
+  <!-- Creative Commons image sourced from https://www.freelogodesign.org/preview?lang=en&name=&logo=3cb08b7e-706d-4539-a663-82c8ea221204 and used for educational purposes only -->
+  <link rel="icon" href="media/logo.png">
+
+  <script src='../wireframe.js'></script>
+</head>
+
+<body>
+  <div class="container">
     <header>
-      <div>Put company logo and name here</div>
+      <div class="jumbotron">
+        <p id="company-name">CINEMAX</p>
+        <!-- Creative Commons image sourced from https://www.freelogodesign.org/preview?lang=en&name=&logo=3cb08b7e-706d-4539-a663-82c8ea221204 and used for educational purposes only -->
+        <img src="media/logo.png" alt="company-logo" id="logo">
+      </div>
     </header>
-
-    <nav>
-      <div>Put website navigation links here</div>
+    <div class="head-strip"></div>
+    <nav class="navbar sticky-top navbar-expand-sm shadow">
+      <div>
+        <a class="btn btn-primary btn-lg" href="#About-us" role="button">ABOUT US</a>
+        <a class="btn btn-primary btn-lg" href="#" role="button">PRICES</a>
+        <a class="btn btn-primary btn-lg" href="#now-showing" role="button">NOW SHOWING</a>
+      </div>
     </nav>
-
+    <div class="head-strip"></div>
     <main>
-      <article id='Website Under Construction'>
-    <!-- Creative Commons image sourced from https://pixabay.com/en/maintenance-under-construction-2422173/ and used for educational purposes only -->
+      <article id='About-us'>
+        <h1 id="about-us-header">About Us</h1>
+        <p>Cinemax is a movie theatre that was established to serve local movie enthuasiasts. </p>
+        <p>Eventhough Cinemax was founded a long time ago, our facilites has recently been renovated to make the
+          experience of movie going even more enjoyable.</p>
+        <br>
+
+        <h3>More comfortable seats</h3>
+
+        <p>Our goal is for you to have an immersive movie experience, with that in mind, we would like to introduce you
+          to our newly equipped seats with better cushioning system. We acknowledge that movies' durations can be
+          extensive, these newly upgraded seats will ensure your comfortability and prevent lumbar and back pain. </p>
+        <br>
+        <hr style="border: white solid 1px;">
+        <br>
+        <div class="row">
+          <div class="col-md-4">
+            <img
+              src="https://www.profurn.com.au/static/uploads/images/paragon-760-cup-7-grey-wfqrrrxrcizz.jpg?mode=max&upscale=false&width=255"
+              alt="standard-seat">
+          </div>
+          <div class="col-md-8">
+            <h4>Standard Seating</h4>
+            <p>Our new standard seats will now come with cupholders so you will never have to worry out spilling your
+              drinks ever again. This seat is mad with high quality faux leather to bring you an enjoyable movie
+              exprience.</p>
+          </div>
+        </div>
+        <br><br><br><br><br><br><br><br><br><br><br>
+        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Illo aut nulla, cumque repellendus aperiam non
+          saepe doloribus quod id quis provident enim sed perferendis eligendi illum voluptate cupiditate,
+          exercitationem corrupti est iure nobis repudiandae hic sapiente aliquid. Perspiciatis temporibus illum sed
+          sequi? Quia, ad? Voluptatum qui doloremque quis cum et, cumque voluptatem nobis magnam recusandae. Tenetur
+          quis sint quas animi provident vero, porro sed doloribus. Voluptatem soluta nihil impedit unde? Eligendi non
+          possimus maxime itaque, voluptatum quae nesciunt expedita reprehenderit earum numquam aperiam facere ad
+          obcaecati. Accusamus, veritatis dignissimos. Hic maxime ratione porro! Ex repellendus totam, placeat similique
+          voluptate quod facilis culpa id et minima consequatur veniam excepturi ea. Ratione porro ipsa minima non
+          magnam vero hic iure molestiae illum aliquam repellat perferendis ex maiores est beatae delectus in commodi
+          quae, cupiditate optio sunt soluta consequatur error sed. Voluptatem delectus rem praesentium iste, natus
+          eaque expedita assumenda modi atque? Doloremque!</p>
+        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Illo aut nulla, cumque repellendus aperiam non
+          saepe doloribus quod id quis provident enim sed perferendis eligendi illum voluptate cupiditate,
+          exercitationem corrupti est iure nobis repudiandae hic sapiente aliquid. Perspiciatis temporibus illum sed
+          sequi? Quia, ad? Voluptatum qui doloremque quis cum et, cumque voluptatem nobis magnam recusandae. Tenetur
+          quis sint quas animi provident vero, porro sed doloribus. Voluptatem soluta nihil impedit unde? Eligendi non
+          possimus maxime itaque, voluptatum quae nesciunt expedita reprehenderit earum numquam aperiam facere ad
+          obcaecati. Accusamus, veritatis dignissimos. Hic maxime ratione porro! Ex repellendus totam, placeat similique
+          voluptate quod facilis culpa id et minima consequatur veniam excepturi ea. Ratione porro ipsa minima non
+          magnam vero hic iure molestiae illum aliquam repellat perferendis ex maiores est beatae delectus in commodi
+          quae, cupiditate optio sunt soluta consequatur error sed. Voluptatem delectus rem praesentium iste, natus
+          eaque expedita assumenda modi atque? Doloremque!</p>
+        <!-- Creative Commons image sourced from https://pixabay.com/en/maintenance-under-construction-2422173/ and used for educational purposes only -->
         <img src='../../media/website-under-construction.png' alt='Website Under Construction' />
       </article>
+      <div id="break">
+      </div>
+      <section id="now-showing">
+        <h1 id="showing-header"><img src="media/movie.png" id="movie-icon">(_NOW_SHOWING_)</h1>
+        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Illo aut nulla, cumque repellendus aperiam non
+          saepe doloribus quod id quis provident enim sed perferendis eligendi illum voluptate cupiditate,
+          exercitationem corrupti est iure nobis repudiandae hic sapiente aliquid. Perspiciatis temporibus illum sed
+          sequi? Quia, ad? Voluptatum qui doloremque quis cum et, cumque voluptatem nobis magnam recusandae. Tenetur
+          quis sint quas animi provident vero, porro sed doloribus. Voluptatem soluta nihil impedit unde? Eligendi non
+          possimus maxime itaque, voluptatum quae nesciunt expedita reprehenderit earum numquam aperiam facere ad
+          obcaecati. Accusamus, veritatis dignissimos. Hic maxime ratione porro! Ex repellendus totam, placeat similique
+          voluptate quod facilis culpa id et minima consequatur veniam excepturi ea. Ratione porro ipsa minima non
+          magnam vero hic iure molestiae illum aliquam repellat perferendis ex maiores est beatae delectus in commodi
+          quae, cupiditate optio sunt soluta consequatur error sed. Voluptatem delectus rem praesentium iste, natus
+          eaque expedita assumenda modi atque? Doloremque!</p>
+        <div class="row row-cols-1 row-cols-md-2">
+          <div class="col">
+            <div class="card h-100">
+              <div class="row no-gutters">
+                <div class="col-md-6">
+                  <img src="media/avengers.jpg" class="card-img" alt="Avengers Endgame Poster">
+                </div>
+                <div class="col-md-6">
+                  <div class="card-body">
+                    <h5 class="card-title">Avengers: Endgame</h5>
+                    <p class="card-text">Day - Hour</p>
+                    <p class="card-text">Day - Hour</p>
+                    <p class="card-text">Day - Hour</p>
+                    <p class="card-text">Day - Hour</p>
+                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                    <img src="media/PG-13.svg" alt="Rated PG-13" width="40%" class="movie-rating">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card h-100">
+              <div class="row no-gutters">
+                <div class="col-md-6">
+                  <img src="media/topend-wedding.jpg" class="card-img" alt="Top End Wedding Poster">
+                </div>
+                <div class="col-md-6">
+                  <div class="card-body">
+                    <h5 class="card-title">Top End Wedding</h5>
+                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
+                      additional content. This content is a little bit longer.</p>
+                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                    <img src="" alt="Rated" width="20%" class="movie-rating">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row row-cols-1 row-cols-md-2">
+          <div class="col">
+            <div class="card h-100">
+              <div class="row no-gutters">
+                <div class="col-md-6">
+                  <img src="media/dumbo.jpg" class="card-img" alt="Dumbo Poster">
+                </div>
+                <div class="col-md-6">
+                  <div class="card-body">
+                    <h5 class="card-title">Dumbo</h5>
+                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
+                      additional content. This content is a little bit longer.</p>
+                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                    <img src="media/G.svg" alt="Rated G" width="20%" class="movie-rating">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card h-100">
+              <div class="row no-gutters">
+                <div class="col-md-6">
+                  <img src="media/happy-prince.jpg" class="card-img" alt="The Happy Prince Poster">
+                </div>
+                <div class="col-md-6">
+                  <div class="card-body">
+                    <h5 class="card-title">The Happy Prince</h5>
+                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
+                      additional content. This content is a little bit longer.</p>
+                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                    <img src="media/R.svg" alt="Rated R" width="20%" class="movie-rating">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+      </section>
     </main>
+    <a href="#top"><img id="TopBtn" src="media/top.png" alt="Back to Top"></a>
 
     <footer>
-      <div>&copy;<script>
-        document.write(new Date().getFullYear());
-      </script> Put your name(s), student number(s) and group name here. Last modified <?= date ("Y F d  H:i", filemtime($_SERVER['SCRIPT_FILENAME'])); ?>.</div>
-      <div>Disclaimer: This website is not a real website and is being developed as part of a School of Science Web Programming course at RMIT University in Melbourne, Australia.</div>
+      <div>&copy;
+        <script>
+          document.write(new Date().getFullYear());
+        </script> Put your name(s), student number(s) and group name here. Last modified
+        <?= date ("Y F d  H:i", filemtime($_SERVER['SCRIPT_FILENAME'])); ?>.</div>
+      <div>Disclaimer: This website is not a real website and is being developed as part of a School of Science Web
+        Programming course at RMIT University in Melbourne, Australia.</div>
       <div><button id='toggleWireframeCSS' onclick='toggleWireframe()'>Toggle Wireframe CSS</button></div>
     </footer>
+  </div>
 
-  </body>
+</body>
+
 </html>

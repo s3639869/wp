@@ -1,0 +1,68 @@
+p + p {
+    color: blue; 
+}
+p + p + p {
+    color: red;
+}
+a:link {
+    color: blue;
+}
+a:visited {
+    color: hotpink;
+}
+a:hover {
+    color: green;
+    background-color: honeydew;
+}
+a:active {
+    color: crimson;
+}
+ol li:first-child {
+    color: red;
+}
+ol li:last-child {
+    color: green;
+}
+ol li:nth-child(even) {
+    color: grey;
+}
+ol li:nth-child(4) {
+    color: cyan;
+}
+table, td, th {
+    border: 1px solid;
+    
+}
+table {
+    border-collapse: collapse;
+}
+tr:first-child {
+    background-color: darkkhaki;
+}
+tr:nth-child(even) {
+    background-color: darkturquoise;
+}
+td:nth-child(even) {
+    background-color: firebrick;
+}
+p::first-line {
+    color: darkcyan;
+    font-style: italic;
+    font-size: 120%;
+}
+p::first-letter {
+    color: rgb(238, 135, 17);
+    font-size: 200%;
+}
+p::selection { 
+    color: rgba(0,0,0,0);
+}
+p::before, p::after { 
+    content: ' \2764 '; 
+    color: greenyellow;
+    font-weight: bold;
+    font-size: 150%;
+}
+table::after {
+    content: url(https://wp-rmitvn.github.io/WebProgramming/img/image1.png);
+}
