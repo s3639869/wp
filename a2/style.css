@@ -250,6 +250,9 @@ body{
     background-color: lightblue;
     border-radius: 100%;
 }
+#price-ref {
+    display: inline-block;
+}
 #price-ref:link, #price-ref:visited {
     font-weight: bold;
     padding: 5px;
@@ -319,7 +322,7 @@ body{
     font-weight: bold;
 }
 #booking-btn-row > .booking-btn:hover, .booking-btn:focus {
-    border: 5px black groove;
+    border: 5px yellow groove;
     text-decoration: none;
     margin: 0px;
     background-color: #202020;
