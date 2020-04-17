@@ -337,7 +337,11 @@ body {
     font-weight: bold;
     color: #fff;
 }
+<<<<<<< HEAD
 .booking-btn:hover {
+=======
+#booking-btn-row > .booking-btn:hover, .booking-btn:focus {
+>>>>>>> 35f5377702b12b0110528779747ed3c428a3a1eb
     border: 5px yellow groove;
     text-decoration: none;
     background-color: #202020;
