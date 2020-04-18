@@ -100,6 +100,15 @@ body {
 .intro-text {
     text-align: justify;
 }
+.lobby-img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+.carousel-caption {
+    background-color: rgba(9, 49, 69, 0.9);
+    text-align: center;
+}
 .dolby-sys-img {
     background-color: #1d1d1d;
     width: 300px;
@@ -403,4 +412,13 @@ body {
 .seat-body, .dolby-body {
     background-color: #3C6478;
     color: honeydew;
+}
+.git-link {
+    color: deepskyblue;
+    text-decoration: none;
+}
+.git-link:hover {
+    font-weight: bold;
+    color: cornsilk;
+    text-decoration: underline;
 }
