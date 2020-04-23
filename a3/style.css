@@ -182,7 +182,7 @@ body {
     background-color: #093145;
     padding: 30px;
 }
-.synopsis-section{
+.synopsis-section, #Booking-collapse {
     display: none;
 }
 .break {
@@ -391,7 +391,7 @@ body {
     height: 30px;
     vertical-align: bottom;
 }
-.summary-head {
+.summary-head, #auto-info {
     font-weight: bold;
     font-size: larger;
 }
@@ -428,4 +428,17 @@ body {
     font-weight: bold;
     color: cornsilk;
     text-decoration: underline;
+}
+#order {
+    position: absolute;
+    right: 0px;
+    bottom: 10px;
+    padding-left: 30px;
+    padding-right: 30px;
+    font-size: large;
+    font-weight: bold;
+    background-color: #fff;
+}
+#cust-name:invalid {
+    border-color: red;
 }

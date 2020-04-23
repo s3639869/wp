@@ -24,36 +24,78 @@ document.addEventListener('DOMContentLoaded', function () {
   };
 });
 
-var movieID = ['ACT', 'AHF', 'ANM', 'RMC']
+function getKey(object, value) {
+  return Object.keys(object).find(key => object[key] === value);
+}
+
+const days = { 'MON': 'Monday', 'TUE': 'Tuesday', 'WED': 'Wednesday', 'THU': 'Thursday', 'FRI': 'Friday', 'SAT': 'Saturday', 'SUN': 'Sunday' };
+const weekDays = ['MON','TUE', 'WED','THU','FRI'];
+const movieID = { 'ACT': 'Avengers: Endgame', 'RMC': 'Top End Wedding', 'ANM': 'Dumbo', 'AHF': 'The Happy Prince' };
+const timeConvert = { 'T12': '12pm', 'T15': '3pm', 'T18': '6pm', 'T21': '9pm' };
+const seatPrice = { 'STA': 19.80, 'STP': 17.50, 'STC': 15.30, 'FCA': 30.00, 'FCP': 27.00, 'FCC': 24.00 };
+const seatDiscount = { 'STA': 14.00, 'STP': 12.50, 'STC': 11.00, 'FCA': 24.00, 'FCP': 22.50, 'FCC': 21.00 };
+var currentMovieID;
+var currentMovieName;
+var showtime;
+var dayShort;
 
 function toggleSynopsis(whichID) {
   var whichMovie = document.getElementById("synopsis" + whichID);
-  var movieButton = document.getElementById("movieButton" + whichID);
-  var movieName = movieButton.getAttribute("name");
   var synopsisDisplay = whichMovie.style.display;
-  var i;
 
-  for (i = 0; i < movieID.length; i++) {
-    if (movieID[i] == whichID) {
+  for (var i = 0; i < Object.keys(movieID).length; i++) {
+    if (Object.keys(movieID)[i] == whichID) {
       if (synopsisDisplay == 'block') {
         whichMovie.style.display = 'none';
-        console.log(movieName + ": hide");
       }
       else {
         whichMovie.style.display = 'block';
-        console.log(movieName + ": show");
       }
     }
     else {
-      var whichMovie2 = document.getElementById("synopsis" + movieID[i]);
+      var whichMovie2 = document.getElementById("synopsis" + Object.keys(movieID)[i]);
       whichMovie2.style.display = 'none';
-      console.log(movieID[i] + ": hide 2");
-
     }
   }
+  currentMovieID = whichID;
+  currentMovieName = movieID[whichID];
 }
+
+const bookingBtn = [...document.querySelectorAll(".booking-btn")];
+const bookingSth = document.querySelectorAll(".booking-btn");
+const bookSection = document.getElementById("Booking-collapse");
+bookingBtn.forEach((btnElement) => btnElement.addEventListener('click', toggleBooking));
+
+function toggleBooking() {
+  showtime = this.innerHTML;
+  document.getElementById('auto-info').innerHTML = currentMovieName + " - " + showtime;
+  bookSection.style.display = 'block';
+  document.getElementById('movie-id').value = currentMovieID;
+  for (var i = 0; i < Object.values(days).length; i++) {
+    if (showtime.includes(Object.values(days)[i])) {
+      document.getElementById('movie-day').value = Object.keys(days)[i];
+    }
+  }
+  for (var i = 0; i < Object.values(timeConvert).length; i++) {
+    if (showtime.includes(Object.values(timeConvert)[i])) {
+      document.getElementById('movie-hour').value = Object.keys(timeConvert)[i];
+    }
+  }
+  calcPrice();
+  console.log(document.getElementById('movie-id').value + " " + document.getElementById('movie-day').value + " " + document.getElementById('movie-hour').value);
+}
+
+const closeBook = document.getElementById("close-booking");
+closeBook.addEventListener('click', closeBooking);
+
+function closeBooking() {
+  bookSection.style.display = 'none';
+  console.log(document.getElementById('movie-id').value + " " + document.getElementById('movie-day').value + " " + document.getElementById('movie-hour').value);
+}
+
 var selections = [...document.querySelectorAll(".seat-select")];
 selections.forEach(addList);
+
 function addList(selection) {
   for (var i = 1; i <= 10; i++) {
     var options = document.createElement('option');
@@ -61,4 +103,18 @@ function addList(selection) {
     selection.add(options);
   }
 }
+selections.forEach((seatItem) => seatItem.addEventListener('change', calcPrice));
 
+function calcPrice() {
+  var totalPrice = 0;
+  for (let i = 0; i < selections.length; i++) {
+      if (document.getElementById('movie-day').value == 'MON' || document.getElementById('movie-day').value == 'WED' ||
+      (weekDays.includes(document.getElementById('movie-day').value) && document.getElementById('movie-hour').value == 'T12')) {
+        totalPrice += seatDiscount[selections[i].id.slice(-3)] * selections[i].value;
+      }
+      else {
+        totalPrice += seatPrice[selections[i].id.slice(-3)] * selections[i].value;
+      }
+  }
+  document.getElementById('total').innerHTML = "Total $ "+totalPrice.toFixed(2);
+}
