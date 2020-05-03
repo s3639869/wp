@@ -120,26 +120,14 @@ function checkCustName(){
   var nameInput = document.getElementById('cust-name');
   var pattern = /^[a-zA-Z\'\.\-]+[\s]?([a-zA-Z\'\.\-]+[\s]?)+$/;
   if (pattern.test(nameInput.value)){
-    disableSubmitButton(false);
     nameInput.style.border = '2px solid #008040';
     console.log('name valid');
+    return true;
   }
   else{
-    disableSubmitButton(true);
     nameInput.style.border = '2px solid #C00000';
     console.log('name invalid');
-  }
-}
-function disableSubmitButton(value){ //true, false only
-  var submitButton = document.getElementById('order');
-  if (value == true){
-    submitButton.disabled = value;
-  }
-  else if (value == false){
-    submitButton.disabled = value;
-  }
-  else{
-    console.log("Incorrect value for function toggleSubmitButton()");
+    return false;
   }
 }
 
@@ -147,14 +135,14 @@ function checkCustMobile() {
   var mobileInput = document.getElementById('cust-mobile');
   var pattern = /^(\(04\)|04|\+61[\s]?4)[\s]?(\d[\s]?){8}$/;
   if (pattern.test(mobileInput.value)){
-    disableSubmitButton(false);
     mobileInput.style.border = '2px solid #008040';
     console.log('mobile valid');
+    return true;
   }
   else{
-    disableSubmitButton(true);
     mobileInput.style.border = '2px solid #C00000';
     console.log('mobile invalid');
+    return false;
   }
 }
 
@@ -162,15 +150,28 @@ function checkCustCard() {
   var cardInput = document.getElementById('cust-card');
   var pattern = /^(\d[\s]?){14,19}$/;
   if (pattern.test(cardInput.value)){
-    disableSubmitButton(false);
     cardInput.style.border = '2px solid #008040';
     console.log('card valid');
+    return true;
   }
   else{
-    disableSubmitButton(true);
     cardInput.style.border = '2px solid #C00000';
     console.log('card invalid');
+    return false;
   }
 }
 
 document.getElementById('cust-expiry').min = new Date().toISOString().slice(0,7);
+
+function checkAllCustInput(){
+  var submitButton = document.getElementById('order');
+
+  if (checkCustName() && checkCustMobile() && checkCustCard()){
+    submitButton.disabled = false;
+    console.log('All inputs are valid');
+  }
+  else{
+    submitButton.disabled = true;
+    console.log('Some inputs are invalid');
+  }
+}
