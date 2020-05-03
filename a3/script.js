@@ -58,7 +58,6 @@ function toggleSynopsis(whichID) {
 }
 
 const bookingBtn = [...document.querySelectorAll(".booking-btn")];
-const bookingSth = document.querySelectorAll(".booking-btn");
 const bookSection = document.getElementById("Booking-collapse");
 bookingBtn.forEach((btnElement) => btnElement.addEventListener('click', toggleBooking));
 
