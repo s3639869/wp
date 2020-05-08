@@ -428,6 +428,13 @@ body {
     color: cornsilk;
     text-decoration: underline;
 }
+.require{
+    color: red;
+}
+#seat-req {
+    color: red;
+    padding-left: 10px;
+}
 #order {
     position: absolute;
     right: 0px;
