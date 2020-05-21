@@ -104,6 +104,8 @@ table, th, td {
     background-repeat: no-repeat;
     font-family: Montserrat;
     color: rgb(20, 20, 20);
+    -webkit-print-color-adjust: exact;
+    color-adjust: exact;
 }
 #ticket-group {
     padding: 50px; 
@@ -114,6 +116,8 @@ table, th, td {
     background-repeat: no-repeat;
     font-family: Montserrat;
     color: rgb(20, 20, 20);
+    -webkit-print-color-adjust: exact;
+    color-adjust: exact;
 }
 .ticket-info {
     font-size: 20px;
