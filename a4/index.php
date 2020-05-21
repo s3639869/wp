@@ -1204,7 +1204,7 @@
                   </div>
                 </fieldset>
                 <br>
-                <p style="text-align: right;"><b>Total: $</b> <span id="total"><?php echo number_format((float)calcTotalPost(),2); ?></span></p>
+                <p style="text-align: right;"><b>Total: $</b> <span id="total"><?php echo number_format((float)calcTotalPost(),2,'.',''); ?></span></p>
               </div>
 
               <div class="col-md-8">
