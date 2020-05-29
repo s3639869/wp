@@ -1,10 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang='en'>
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Control Panel</title>
+
+  <!-- Keep wireframe.css for debugging, add your css to style.css -->
+  <link id='wireframecss' type="text/css" rel="stylesheet" href="../wireframe.css" disabled>
 
   <!-- Add bootstrap-->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
@@ -23,18 +26,36 @@
   <!-- Link to style.css -->
   <link id='stylecss' type="text/css" rel="stylesheet" href="style.css">
 
-  <!-- Link to other php files -->
-  <?php include 'database.php';?>
+  <!-- Link to web font-->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Slab">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+
+    <!-- Link to web icon-->
+  <!-- Creative Commons image sourced from https://www.freelogodesign.org and used for educational purposes only -->
+  <link rel="icon" href="media/theme/icon.png">
+
+  <!-- Link to script.js -->
+  <script defer src="script.js"></script>
+
+  <!-- Link to tools.php -->
   <?php include 'tools.php';?>
+  <?php include 'database.php';?>
+
 </head>
 
 <body>
+  <?php
+    if(empty($_SESSION['admin'])){
+      header('Location: index.php');
+  }
+  ?>
   <div class="container">
     <nav id="top-bar" class="navbar navbar-expand-sm shadow">
       <a class="navbar-brand" href="index.php"><img src="media/theme/logo.png" alt="Shop logo"></a>
       <ul class="nav nav-pills ml-auto user-menu">
         <li class="nav-item">
-          <a class="nav-link btn btn-primary" href="#about-us">About us</a>
+          <a class="nav-link btn btn-primary" href="index.php">Home</a>
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
@@ -42,64 +63,32 @@
             Products
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="bandana.html">Bandana</a>
-            <a class="dropdown-item" href="medical-mask.html">Medical mask</a>
-            <a class="dropdown-item" href="dust-mask.html">Dust mask</a>
+            <a class="dropdown-item" href="bandana.php">Bandana</a>
+            <a class="dropdown-item" href="medical-mask.php">Medical mask</a>
+            <a class="dropdown-item" href="dust-mask.php">Dust mask</a>
           </div>
         </li>
         <li class="nav-item">
-          <a class="nav-link btn btn-primary" href="#">Cart</a>
+          <a class="nav-link btn btn-primary" href="cart.php">Cart</a>
         </li>
-        <?php
-            if(empty($_SESSION['admin'])){
-              echo "<li class='nav-item'><a class='nav-link btn btn-primary' href='login.php'>Login</a></li>";
-            }
-            else {
-              echo "<li class='nav-item'><a class='nav-link btn btn-primary' href='controlpanel.php'>Control panel</a></li>";
-              echo "<li class='nav-item'><a class='nav-link btn btn-primary' href='logout.php'>Logout</a></li>"; 
-            }
-          ?>
+        <li class='nav-item'><a class='nav-link btn btn-primary' href='controlpanel.php'>Control panel</a></li>
+        <li class='nav-item'><a class='nav-link btn btn-primary' href='logout.php'>Logout</a></li>
       </ul>
     </nav>
     <img class="img-fluid" src="media/theme/mask-banner.jpg" alt="Mask banner">
     <div id="wrapper">
       <section class="header_text sub">
-        <h4><span>Control panel</span></h4>
+        <h4><span>Control Panel</span></h4>
       </section>
-
-      <form action="" method="POST" id="add-form" enctype="multipart/form-data">
-        <div class="form-group">
-          <label for="product-id">Product ID</label>
-          <input type="text" name="product[id]" id="product-id">
-        </div>
-        <div class="form-group">
-          <label for="product-name">Name</label>
-          <input type="text" name="product[name]" id="product-name">
-        </div>
-        <div class="form-group">
-          <label for="product-des">Description</label>
-          <textarea rows="5" cols="50" name="product[des]" form="add-form" id="product-des"></textarea>
-        </div>
-        <div class="form-group">
-          <label for="product-type">Product Type</label>
-          <select name="product[type]" id="product-type">
-            <option value='Bandana'>Bandana</option>
-            <option value='Medical mask'>Medical Mask</option>
-            <option value='Dust mask'>Dust Mask</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label for="product-name">Price</label>
-          <input type="text" name="product[price]" id="product-price">
-        </div>
-        <div class="form-group">
-          <label for="product-img">Upload images</label>
-          <input type="file" name="image1" id="product-img" accept="image/*">
-        </div>
-        <div class="form-group">
-          <input class="btn btn-primary btn-dark" type="submit" name="addproduct" value="Add Product" id="addproduct">
-        </div>
-      </form>
+      <div id="admin-activity">
+        <p style="font-size: 16px;">Hello <em>admin,</em>
+        <br>
+        what would you like to do?</p>
+        <a href="manageacc.php"><button type="button" class="btn btn-secondary">Manage admin users</button></a><br><br>
+        <a href="managecate.php"><button type="button" class="btn btn-secondary">Manage product categories</button></a><br><br>
+        <a href="manageproduct.php"><button type="button" class="btn btn-secondary">Manage products</button></a>
+      </div>
+      <hr>
     </div>
     <footer>
       <a href="#top-bar"><img id="TopBtn" src="media/theme/gotop.png" alt="Back to Top"></a>
@@ -108,8 +97,10 @@
           <div class="col-md-3">
             <h4>Navigation</h4>
             <ul>
-              <li><a href="index.php">Homepage</a></li>
-              <li><a href="#about-us">About Us</a></li>
+              <li><a href="index.php">Home</a></li>
+              <li><a href="bandana.php">Bandanas</a></li>
+              <li><a href="medical-mask.php">Medical Mask</a></li>
+              <li><a href="dust-mask.php">Dust Mask</a></li>
             </ul>
           </div>
           <div class="col-md-4">

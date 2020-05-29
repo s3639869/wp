@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Login</title>
+  <title>Cart</title>
 
   <!-- Keep wireframe.css for debugging, add your css to style.css -->
   <link id='wireframecss' type="text/css" rel="stylesheet" href="../wireframe.css" disabled>
@@ -34,6 +34,7 @@
     <!-- Link to web icon-->
   <!-- Creative Commons image sourced from https://www.freelogodesign.org and used for educational purposes only -->
   <link rel="icon" href="media/theme/icon.png">
+  <script src='../wireframe.js'></script>
 
   <!-- Link to script.js -->
   <script defer src="script.js"></script>
@@ -45,12 +46,21 @@
 </head>
 
 <body>
+<?php
+      $servername = "localhost";
+      $username = "root";
+      $password = "root";
+      $dbname = "shopDatabase";
+
+      // Create connection
+      $conn = mysqli_connect($servername, $username, $password, $dbname);
+    ?>
   <div class="container">
     <nav id="top-bar" class="navbar navbar-expand-sm shadow">
       <a class="navbar-brand" href="index.php"><img src="media/theme/logo.png" alt="Shop logo"></a>
       <ul class="nav nav-pills ml-auto user-menu">
         <li class="nav-item">
-          <a class="nav-link btn btn-primary" href="index.php">Home</a>
+          <a class="nav-link btn btn-primary" href="index.php">Homes</a>
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
@@ -79,17 +89,9 @@
     </nav>
     <img class="img-fluid" src="media/theme/mask-banner.jpg" alt="Mask banner">
     <div id="wrapper">
-      <section class="header_text sub">
-        <h4><span>Logout</span></h4>
-      </section>
-      <form action="" method="POST" id="logout-form">
-        <p>Are you sure to log out?</p>
-        <div class="form-group">
-          <input class="btn btn-primary btn-dark" type="submit" value="Yes" name="logout">
-          <input class="btn btn-primary btn-dark" type="submit" value="No" name="home-return">
-        </div>
-      </form>
-      <hr>
+      <?php
+        echo $_SESSION;
+      ?>
     </div>
     <footer>
       <a href="#top-bar"><img id="TopBtn" src="media/theme/gotop.png" alt="Back to Top"></a>
@@ -98,10 +100,10 @@
           <div class="col-md-3">
             <h4>Navigation</h4>
             <ul>
-              <li><a href="index.php">Home</a></li>
-              <li><a href="bandana.php">Bandanas</a></li>
-              <li><a href="medical-mask.php">Medical Mask</a></li>
-              <li><a href="dust-mask.php">Dust Mask</a></li>
+            <li><a href="index.php">Home</a></li>
+            <li><a href="bandana.php">Bandanas</a></li>
+            <li><a href="medical-mask.php">Medical Mask</a></li>
+            <li><a href="dust-mask.php">Dust Mask</a></li>
             </ul>
           </div>
           <div class="col-md-4">

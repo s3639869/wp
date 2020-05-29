@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Login</title>
+  <title>Product Detail</title>
 
   <!-- Keep wireframe.css for debugging, add your css to style.css -->
   <link id='wireframecss' type="text/css" rel="stylesheet" href="../wireframe.css" disabled>
@@ -31,9 +31,10 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Slab">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
 
-    <!-- Link to web icon-->
+     <!-- Link to web icon-->
   <!-- Creative Commons image sourced from https://www.freelogodesign.org and used for educational purposes only -->
   <link rel="icon" href="media/theme/icon.png">
+  <script src='../wireframe.js'></script>
 
   <!-- Link to script.js -->
   <script defer src="script.js"></script>
@@ -45,6 +46,15 @@
 </head>
 
 <body>
+  <?php
+      $servername = "localhost";
+      $username = "root";
+      $password = "root";
+      $dbname = "shopDatabase";
+
+      // Create connection
+      $conn = mysqli_connect($servername, $username, $password, $dbname);
+    ?>
   <div class="container">
     <nav id="top-bar" class="navbar navbar-expand-sm shadow">
       <a class="navbar-brand" href="index.php"><img src="media/theme/logo.png" alt="Shop logo"></a>
@@ -79,18 +89,50 @@
     </nav>
     <img class="img-fluid" src="media/theme/mask-banner.jpg" alt="Mask banner">
     <div id="wrapper">
-      <section class="header_text sub">
-        <h4><span>Logout</span></h4>
-      </section>
-      <form action="" method="POST" id="logout-form">
-        <p>Are you sure to log out?</p>
-        <div class="form-group">
-          <input class="btn btn-primary btn-dark" type="submit" value="Yes" name="logout">
-          <input class="btn btn-primary btn-dark" type="submit" value="No" name="home-return">
+    <div class="container my-4">
+        <h4 class="title">
+          <span class="text"><span class="line"><b>Product </b> <strong>Details</strong></span></span>
+        </h4>
+        <div class="row">
+          <?php
+            mysqli_real_escape_string($_GET['id']);
+            $id = $_GET['id'];
+            $productselect = "SELECT id, productname, price, descript, product_type, main_image FROM Products WHERE id = '$id'";
+            $result = mysqli_query($conn, $productselect) or die($productselect);
+            //$result = mysqli_query($conn, $productselect);
+            if($result){
+                if(mysqli_num_rows($result) > 0){
+                    while($row = mysqli_fetch_array($result)){;
+                        // echo "<div class='col-sm'>";
+                        // <div class='card product-box mb-2'>
+                        echo "<div class='col-md-4' id='detail'><a href='product-detail.php?id={$row['id']}'><img class='card-img-top' src=";
+                        echo "'media/product/".$row['main_image']."' alt='Product image'></a></div>";
+                        echo "<div class='col-md-8'><h2><b>".$row['productname']."</b></h2>";
+                        echo "<p style='font-size: 18px;'><a href='".str_replace(' ','-',strtolower($row['product_type'])).".php' class='category'>".$row['product_type']."</a></p>";
+                        echo "<p style='font-size: 18px;'><b>Description: </b>".$row['descript']."</p>";
+                        echo "<p style='font-size: 18px;'><b>Price: </b>$".$row['price']."</p>";
+
+                        echo "<form action='cart.php' method='post'>";
+                        echo "<p style='font-size: 18px;'><b>Quantity:</b><button type=button onclick='minus()'>-</button>";
+                        echo "<input style='text-align: center; font-size: 14px;' type=text id='counter' value='0' name='".$row['id']."' onblur='updateQuantity()'>";
+                        echo "<button type='button' onclick='plus();'>+</button></p>";
+                        echo "<input type='submit' name='Add to Cart' value='Add to Cart' id='Add to Cart'><form>";
+                    }
+                    // Free result set
+                    // mysqli_free_result($result);
+                } else{
+                    echo "No records matching your query were found.";
+                }
+             } 
+            else{
+                echo "ERROR: Could not able to execute $result. " . mysqli_error($conn);
+            }
+          ?>
         </div>
-      </form>
-      <hr>
+      </div>
     </div>
+    <head>
+    </head>
     <footer>
       <a href="#top-bar"><img id="TopBtn" src="media/theme/gotop.png" alt="Back to Top"></a>
       <section id="footer-bar">
@@ -98,10 +140,10 @@
           <div class="col-md-3">
             <h4>Navigation</h4>
             <ul>
-              <li><a href="index.php">Home</a></li>
-              <li><a href="bandana.php">Bandanas</a></li>
-              <li><a href="medical-mask.php">Medical Mask</a></li>
-              <li><a href="dust-mask.php">Dust Mask</a></li>
+            <li><a href="index.php">Home</a></li>
+            <li><a href="bandana.php">Bandanas</a></li>
+            <li><a href="medical-mask.php">Medical Mask</a></li>
+            <li><a href="dust-mask.php">Dust Mask</a></li>
             </ul>
           </div>
           <div class="col-md-4">

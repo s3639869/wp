@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Login</title>
+  <title>Bandanas</title>
 
   <!-- Keep wireframe.css for debugging, add your css to style.css -->
   <link id='wireframecss' type="text/css" rel="stylesheet" href="../wireframe.css" disabled>
@@ -31,9 +31,10 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Slab">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
 
-    <!-- Link to web icon-->
+   <!-- Link to web icon-->
   <!-- Creative Commons image sourced from https://www.freelogodesign.org and used for educational purposes only -->
   <link rel="icon" href="media/theme/icon.png">
+  <script src='../wireframe.js'></script>
 
   <!-- Link to script.js -->
   <script defer src="script.js"></script>
@@ -45,6 +46,15 @@
 </head>
 
 <body>
+  <?php
+    $servername = "localhost";
+    $username = "root";
+    $password = "root";
+    $dbname = "shopDatabase";
+
+    // Create connection
+    $conn = mysqli_connect($servername, $username, $password, $dbname);
+  ?>
   <div class="container">
     <nav id="top-bar" class="navbar navbar-expand-sm shadow">
       <a class="navbar-brand" href="index.php"><img src="media/theme/logo.png" alt="Shop logo"></a>
@@ -79,17 +89,28 @@
     </nav>
     <img class="img-fluid" src="media/theme/mask-banner.jpg" alt="Mask banner">
     <div id="wrapper">
-      <section class="header_text sub">
-        <h4><span>Logout</span></h4>
-      </section>
-      <form action="" method="POST" id="logout-form">
-        <p>Are you sure to log out?</p>
-        <div class="form-group">
-          <input class="btn btn-primary btn-dark" type="submit" value="Yes" name="logout">
-          <input class="btn btn-primary btn-dark" type="submit" value="No" name="home-return">
+      <div class="container my-4">
+        <h4 class="title">
+          <span class="text"><span class="line"><strong>Bandanas</strong></span></span>
+        </h4>
+        <div class="row">
+        <?php
+          $productselect = "SELECT id, productname, price, product_type, main_image FROM Products WHERE product_type = 'bandana'";
+          $result = mysqli_query($conn, $productselect) or die(mysqli_error());
+          $productarray = array();
+          while($row = mysqli_fetch_assoc($result)) {
+            $productarray[] = $row;
+          }
+        foreach ($productarray as $num => $info){
+          echo "<div class='col-md-4'><div class='card product-box mb-2'><a href='product-detail.php?id={$info['id']}'><img class='card-img-top' src=";
+          echo "'media/product/".$info['main_image']."' alt='Product image'></a>";
+          echo "<div class='card-body'><a href='product-detail.php?id={$info['id']}' class='title'>".$info['productname']."</a><br>";
+          echo "<a href='".str_replace(' ','-',strtolower($info['product_type'])).".php' class='category'>".$info['product_type']."</a>";
+          echo "<p class='price'>$".$info['price']."</p></div></div></div>";
+        }
+        ?>
         </div>
-      </form>
-      <hr>
+      </div>
     </div>
     <footer>
       <a href="#top-bar"><img id="TopBtn" src="media/theme/gotop.png" alt="Back to Top"></a>

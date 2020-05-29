@@ -32,8 +32,8 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
 
   <!-- Link to web icon-->
-  <!-- Creative Commons image sourced from https://www.freelogodesign.org/preview?lang=en&name=&logo=3cb08b7e-706d-4539-a663-82c8ea221204 and used for educational purposes only -->
-  <link rel="icon" href="media/icon.png">
+  <!-- Creative Commons image sourced from https://www.freelogodesign.org and used for educational purposes only -->
+  <link rel="icon" href="media/theme/icon.png">
   <script src='../wireframe.js'></script>
 
   <!-- Link to script.js -->
@@ -61,7 +61,7 @@
       <a class="navbar-brand" href="index.php"><img src="media/theme/logo.png" alt="Shop logo"></a>
       <ul class="nav nav-pills ml-auto user-menu">
         <li class="nav-item">
-          <a class="nav-link btn btn-primary" href="#about-us">About us</a>
+          <a class="nav-link btn btn-primary" href="index.php">Home</a>
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
@@ -69,13 +69,15 @@
             Products
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="bandana.html">Bandana</a>
-            <a class="dropdown-item" href="medical-mask.html">Medical mask</a>
-            <a class="dropdown-item" href="dust-mask.html">Dust mask</a>
+          <?php
+            foreach($categoryarray as $num => $cate){
+              echo "<a class='dropdown-item' href='".str_replace(' ','-',strtolower($cate['product_type'])).".php'>".$cate['product_type']."</a>";
+            }
+          ?>
           </div>
         </li>
         <li class="nav-item">
-          <a class="nav-link btn btn-primary" href="#">Cart</a>
+          <a class="nav-link btn btn-primary" href="cart.php">Cart</a>
         </li>
           <?php
             if(empty($_SESSION['admin'])){
@@ -157,9 +159,23 @@
           </ol>
           <div class="carousel-inner" role="listbox">
             <div class="carousel-item active">
-
               <div class="row">
-                <div class="col-md-4">
+              <?php
+                  $productselect = "SELECT id, productname, price, product_type, main_image FROM Products WHERE id ='PD003' OR id ='PD007' OR id='PD006'";
+                  $result = mysqli_query($conn, $productselect) or die(mysqli_error());
+                  $productarray = array();
+                  while($row = mysqli_fetch_assoc($result)) {
+                    $productarray[] = $row;
+                  }
+                  foreach ($productarray as $num => $info){
+                    echo "<div class='col-md-4'><div class='card product-box mb-2'><a href='product-detail.php?id={$info['id']}'><img class='card-img-top' src=";
+                    echo "'media/product/".$info['main_image']."' alt='Product image'></a>";
+                    echo "<div class='card-body'><a href='product-detail.php?id={$info['id']}' class='title'>".$info['productname']."</a><br>";
+                    echo "<a href='".str_replace(' ','-',strtolower($info['product_type'])).".php' class='category'>".$info['product_type']."</a>";
+                    echo "<p class='price'>$".$info['price']."</p></div></div></div>";
+                  }
+                ?>
+                <!-- <div class="col-md-4">
                   <div class="card product-box mb-2">
                     <a href="product_detail.html"><img class="card-img-top" src="media/product/1.jpg"
                         alt="Product image"></a>
@@ -191,50 +207,29 @@
                       <p class="price">$17.25</p>
                     </div>
                   </div>
-                </div>
+                </div> -->
 
               </div>
 
             </div>
 
             <div class="carousel-item">
-
-              <div class="row">
-                <div class="col-md-4">
-                  <div class="card product-box mb-2">
-                    <a href="product_detail.html"><img class="card-img-top" src="media/product/1.jpg"
-                        alt="Product image"></a>
-                    <div class="card-body">
-                      <a href="product_detail.html" class="title">Ut wisi enim ad</a><br />
-                      <a href="products.html" class="category">Commodo consequat</a>
-                      <p class="price">$17.25</p>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-4">
-                  <div class="card product-box mb-2">
-                    <a href="product_detail.html"><img class="card-img-top" src="media/product/1.jpg"
-                        alt="Product image"></a>
-                    <div class="card-body">
-                      <a href="product_detail.html" class="title">Ut wisi enim ad</a><br />
-                      <a href="products.html" class="category">Commodo consequat</a>
-                      <p class="price">$17.25</p>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-4">
-                  <div class="card product-box mb-2">
-                    <a href="product_detail.html"><img class="card-img-top" src="media/product/1.jpg"
-                        alt="Product image"></a>
-                    <div class="card-body">
-                      <a href="product_detail.html" class="title">Ut wisi enim ad</a><br />
-                      <a href="products.html" class="category">Commodo consequat</a>
-                      <p class="price">$17.25</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <div class="row">
+            <?php
+            $productselect = "SELECT id, productname, price, product_type, main_image FROM Products WHERE id ='PD005' OR id ='PD001' OR id='PD008'";
+            $result = mysqli_query($conn, $productselect) or die(mysqli_error());
+            $productarray = array();
+            while($row = mysqli_fetch_assoc($result)) {
+              $productarray[] = $row;
+            }
+            foreach ($productarray as $num => $info){
+              echo "<div class='col-md-4'><div class='card product-box mb-2'><a href='product-detail.php?id={$info['id']}'><img class='card-img-top' src=";
+              echo "'media/product/".$info['main_image']."' alt='Product image'></a>";
+              echo "<div class='card-body'><a href='product-detail.php?id={$info['id']}' class='title'>".$info['productname']."</a><br>";
+              echo "<a href='".str_replace(' ','-',strtolower($info['product_type'])).".php' class='category'>".$info['product_type']."</a>";
+              echo "<p class='price'>$".$info['price']."</p></div></div></div>";
+            }
+            ?>
           </div>
         </div>
       </div>
@@ -245,17 +240,17 @@
         </h4>
         <div class="row">
           <?php
-            $productselect = "SELECT productname, price, product_type, main_image FROM Products";
+            $productselect = "SELECT id, productname, price, product_type, main_image FROM Products";
             $result = mysqli_query($conn, $productselect) or die(mysqli_error());
             $productarray = array();
             while($row = mysqli_fetch_assoc($result)) {
               $productarray[] = $row;
             }
           foreach ($productarray as $num => $info){
-            echo "<div class='col-md-4'><div class='card product-box mb-2'><a href='product_detail.html'><img class='card-img-top' src=";
+            echo "<div class='col-md-4'><div class='card product-box mb-2'><a href='product-detail.php?id={$info['id']}'><img class='card-img-top' src=";
             echo "'media/product/".$info['main_image']."' alt='Product image'></a>";
-            echo "<div class='card-body'><a href='product_detail.html' class='title'>".$info['productname']."</a><br>";
-            echo "<a href='".str_replace(' ','-',strtolower($info['product_type'])).".html' class='category'>".$info['product_type']."</a>";
+            echo "<div class='card-body'><a href='product-detail.php?id={$info['id']}' class='title'>".$info['productname']."</a><br>";
+            echo "<a href='".str_replace(' ','-',strtolower($info['product_type'])).".php' class='category'>".$info['product_type']."</a>";
             echo "<p class='price'>$".$info['price']."</p></div></div></div>";
           }
           ?>
@@ -294,8 +289,10 @@
           <div class="col-md-3">
             <h4>Navigation</h4>
             <ul>
-              <li><a href="index.php">Homepage</a></li>
-              <li><a href="#about-us">About Us</a></li>
+              <li><a href="index.php">Home</a></li>
+              <li><a href="bandana.php">Bandanas</a></li>
+              <li><a href="medical-mask.php">Medical Mask</a></li>
+              <li><a href="dust-mask.php">Dust Mask</a></li>
             </ul>
           </div>
           <div class="col-md-4">

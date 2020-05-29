@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Login</title>
+  <title>Account management</title>
 
   <!-- Keep wireframe.css for debugging, add your css to style.css -->
   <link id='wireframecss' type="text/css" rel="stylesheet" href="../wireframe.css" disabled>
@@ -45,6 +45,11 @@
 </head>
 
 <body>
+  <?php
+    if(empty($_SESSION['admin'])){
+      header('Location: index.php');
+  }
+  ?>
   <div class="container">
     <nav id="top-bar" class="navbar navbar-expand-sm shadow">
       <a class="navbar-brand" href="index.php"><img src="media/theme/logo.png" alt="Shop logo"></a>
@@ -66,29 +71,24 @@
         <li class="nav-item">
           <a class="nav-link btn btn-primary" href="cart.php">Cart</a>
         </li>
-        <?php
-            if(empty($_SESSION['admin'])){
-              echo "<li class='nav-item'><a class='nav-link btn btn-primary' href='login.php'>Login</a></li>";
-            }
-            else {
-              echo "<li class='nav-item'><a class='nav-link btn btn-primary' href='controlpanel.php'>Control panel</a></li>";
-              echo "<li class='nav-item'><a class='nav-link btn btn-primary' href='logout.php'>Logout</a></li>"; 
-            }
-          ?>
+        <li class='nav-item'><a class='nav-link btn btn-primary' href='controlpanel.php'>Control panel</a></li>
+        <li class='nav-item'><a class='nav-link btn btn-primary' href='logout.php'>Logout</a></li>
       </ul>
     </nav>
     <img class="img-fluid" src="media/theme/mask-banner.jpg" alt="Mask banner">
     <div id="wrapper">
       <section class="header_text sub">
-        <h4><span>Logout</span></h4>
+        <h4><span>Manage admin users</span></h4>
       </section>
-      <form action="" method="POST" id="logout-form">
-        <p>Are you sure to log out?</p>
-        <div class="form-group">
-          <input class="btn btn-primary btn-dark" type="submit" value="Yes" name="logout">
-          <input class="btn btn-primary btn-dark" type="submit" value="No" name="home-return">
-        </div>
-      </form>
+      <div id="admin-activity">
+        <p style="font-size: 16px;">Hello <em>admin,</em>
+        <br>
+        you can add, update or delete information on your fellow admin friends here.
+        <br>What would you like to do?</p>
+        <a href="addacc.php"><button type="button" class="btn btn-success">Add admin user</button></a><br><br>
+        <a href="updateacc.php"><button type="button" class="btn btn-warning">Update admin account</button></a><br><br>
+        <a href="deleteacc.php"><button type="button" class="btn btn-danger">Delete admin user</button></a>
+      </div>
       <hr>
     </div>
     <footer>
