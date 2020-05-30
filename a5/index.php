@@ -69,9 +69,9 @@
             Products
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <?php
+            <?php
             foreach($categoryarray as $cate){
-              echo "<a class='dropdown-item' href='".str_replace(' ','-',strtolower($cate)).".php'>".$cate."</a>";
+              echo "<a class='dropdown-item' href='category.php?cg=".str_replace(' ','-',strtolower($cate))."'>".$cate."</a>";
             }
           ?>
           </div>
@@ -79,7 +79,7 @@
         <li class="nav-item">
           <a class="nav-link btn btn-primary" href="cart.php">Cart</a>
         </li>
-          <?php
+        <?php
             if(empty($_SESSION['admin'])){
               echo "<li class='nav-item'><a class='nav-link btn btn-primary' href='login.php'>Login</a></li>";
             }
@@ -160,7 +160,7 @@
           <div class="carousel-inner" role="listbox">
             <div class="carousel-item active">
               <div class="row">
-              <?php
+                <?php
                   $productselect = "SELECT id, productname, price, product_type, main_image FROM Products WHERE id ='PD003' OR id ='PD007' OR id='PD006'";
                   $result = mysqli_query($conn, $productselect) or die(mysqli_error());
                   $productarray = array();
@@ -168,8 +168,9 @@
                     $productarray[] = $row;
                   }
                   foreach ($productarray as $num => $info){
+                    $imgarray = explode("|",$info['main_image']);
                     echo "<div class='col-md-4'><div class='card product-box mb-2'><a href='product-detail.php?id={$info['id']}'><img class='card-img-top' src=";
-                    echo "'media/product/".$info['main_image']."' alt='Product image'></a>";
+                    echo "'media/product/".$imgarray[0]."' alt='Product image'></a>";
                     echo "<div class='card-body'><a href='product-detail.php?id={$info['id']}' class='title'>".$info['productname']."</a><br>";
                     echo "<a href='".str_replace(' ','-',strtolower($info['product_type'])).".php' class='category'>".$info['product_type']."</a>";
                     echo "<p class='price'>$".$info['price']."</p></div></div></div>";
@@ -180,8 +181,8 @@
             </div>
 
             <div class="carousel-item">
-            <div class="row">
-            <?php
+              <div class="row">
+                <?php
             $productselect = "SELECT id, productname, price, product_type, main_image FROM Products WHERE id ='PD005' OR id ='PD001' OR id='PD008'";
             $result = mysqli_query($conn, $productselect) or die(mysqli_error());
             $productarray = array();
@@ -197,6 +198,8 @@
               echo "<p class='price'>$".$info['price']."</p></div></div></div>";
             }
             ?>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -214,8 +217,9 @@
               $productarray[] = $row;
             }
           foreach ($productarray as $num => $info){
+            $imgarray = explode("|",$info['main_image']);
             echo "<div class='col-md-4'><div class='card product-box mb-2'><a href='product-detail.php?id={$info['id']}'><img class='card-img-top' src=";
-            echo "'media/product/".$info['main_image']."' alt='Product image'></a>";
+            echo "'media/product/".$imgarray[0]."' alt='Product image'></a>";
             echo "<div class='card-body'><a href='product-detail.php?id={$info['id']}' class='title'>".$info['productname']."</a><br>";
             echo "<a href='".str_replace(' ','-',strtolower($info['product_type'])).".php' class='category'>".$info['product_type']."</a>";
             echo "<p class='price'>$".$info['price']."</p></div></div></div>";
@@ -257,23 +261,34 @@
             <h4>Navigation</h4>
             <ul>
               <li><a href="index.php">Home</a></li>
-              <li><a href="bandana.php">Bandanas</a></li>
-              <li><a href="medical-mask.php">Medical Mask</a></li>
-              <li><a href="dust-mask.php">Dust Mask</a></li>
+              <?php
+            foreach($categoryarray as $cate){
+              echo "<li><a href='category.php?cg=".str_replace(' ','-',strtolower($cate))."'>".$cate."</a></li>";
+            }
+          ?>
             </ul>
           </div>
           <div class="col-md-4">
             <h4>User</h4>
             <ul>
-              <li><a href="login.php">Login</a></li>
+            <?php
+            if(empty($_SESSION['admin'])){
+              echo "<li><a href='login.php'>Login</a></li>";
+            }
+            else {
+              echo "<li><a href='logout.php'>Logout</a></li>"; 
+            }
+          ?>
               <li><a href="cart.php">Cart</a></li>
             </ul>
           </div>
           <div class="col-md-5">
             <p><img src="media/theme/logo.png" class="site_logo" alt=""></p>
-            - Assignment by Group 17: <br> 
-            Vo An Huy (s3804220 - <a href="https://github.com/s3804220/s3804220.github.io" class="git-link" target="_blank">GithubRepo</a>),
-            <br>Doan Nguyen My Hanh (s3639869 - <a href="https://github.com/s3639869/wp" class="git-linktarget="_blank">Github Repo</a>)
+            - Assignment by Group 17: <br>
+            Vo An Huy (s3804220 - <a href="https://github.com/s3804220/s3804220.github.io" class="git-link"
+              target="_blank">GithubRepo</a>),
+            <br>Doan Nguyen My Hanh (s3639869 - <a href="https://github.com/s3639869/wp" class="git-link" target="
+              _blank">Github Repo</a>)
           </div>
         </div>
       </section>
