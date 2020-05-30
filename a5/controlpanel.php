@@ -86,7 +86,7 @@
         what would you like to do?</p>
         <a href="manageacc.php"><button type="button" class="btn btn-secondary">Manage admin users</button></a><br><br>
         <a href="managecate.php"><button type="button" class="btn btn-secondary">Manage product categories</button></a><br><br>
-        <a href="manageproduct.php"><button type="button" class="btn btn-secondary">Manage products</button></a>
+        <a href="manageprod.php"><button type="button" class="btn btn-secondary">Manage products</button></a>
       </div>
       <hr>
     </div>

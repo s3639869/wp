@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Control Panel</title>
+  <title>Account Management</title>
 
   <!-- Add bootstrap-->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
@@ -51,9 +51,11 @@
             Products
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="bandana.php">Bandana</a>
-            <a class="dropdown-item" href="medical-mask.php">Medical mask</a>
-            <a class="dropdown-item" href="dust-mask.php">Dust mask</a>
+          <?php
+            foreach($categoryarray as $num => $cate){
+              echo "<a class='dropdown-item' href='".str_replace(' ','-',strtolower($cate['product_type'])).".php'>".$cate['product_type']."</a>";
+            }
+          ?>
           </div>
         </li>
         <li class="nav-item">
@@ -66,40 +68,33 @@
     <img class="img-fluid" src="media/theme/mask-banner.jpg" alt="Mask banner">
     <div id="wrapper">
       <section class="header_text sub">
-        <h4><span>Control panel</span></h4>
+        <h4><span>Update admin account</span></h4>
       </section>
 
-      <form action="" method="POST" id="add-form" enctype="multipart/form-data">
+      <form action="" method="POST" id="add-adform">
+      <p style="font-size: 14px;">Please type in an admin's ID to update their password</p>
         <div class="form-group">
-          <label for="product-id">Product ID</label>
-          <input type="text" name="product[id]" id="product-id">
+          <label for="product-id">Admin ID</label>
+          <input type="text" name="oldad[id]" value ="<?php echo isset($_POST['oldad']['id']) ? $_POST['oldad']['id'] : ''; ?>">
+          <?php echo $oldiderr ?>
         </div>
         <div class="form-group">
-          <label for="product-name">Name</label>
-          <input type="text" name="product[name]" id="product-name">
+          <label for="product-name">Current Password</label>
+          <input type="password" name="oldad[pass]">
+          <?php echo $oldpasserr ?>
         </div>
         <div class="form-group">
-          <label for="product-des">Description</label>
-          <textarea rows="5" cols="50" name="product[des]" form="add-form" id="product-des"></textarea>
+          <label for="product-name">New Password</label>
+          <input type="password" name="oldad[newpass]">
+          <?php echo $newpasserr ?>
         </div>
         <div class="form-group">
-          <label for="product-type">Product Type</label>
-          <select name="product[type]" id="product-type">
-            <option value='Bandana'>Bandana</option>
-            <option value='Medical mask'>Medical Mask</option>
-            <option value='Dust mask'>Dust Mask</option>
-          </select>
+          <label for="product-name">Retype Password</label>
+          <input type="password" name="oldad[newpass2]">
+          <?php echo $newpass2err ?>
         </div>
         <div class="form-group">
-          <label for="product-name">Price</label>
-          <input type="text" name="product[price]" id="product-price">
-        </div>
-        <div class="form-group">
-          <label for="product-img">Upload images</label>
-          <input type="file" name="image1" id="product-img" accept="image/*">
-        </div>
-        <div class="form-group">
-          <input class="btn btn-primary btn-dark" type="submit" name="addproduct" value="Add Product" id="addproduct">
+          <input class="btn btn-primary btn-dark" type="submit" name="updateadmin" value="Update Password">
         </div>
       </form>
     </div>

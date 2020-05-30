@@ -47,6 +47,7 @@
 
 <body>
   <?php
+      session_start();
       $servername = "localhost";
       $username = "root";
       $password = "root";
@@ -54,6 +55,8 @@
 
       // Create connection
       $conn = mysqli_connect($servername, $username, $password, $dbname);
+
+
     ?>
   <div class="container">
     <nav id="top-bar" class="navbar navbar-expand-sm shadow">
@@ -93,31 +96,43 @@
         <h4 class="title">
           <span class="text"><span class="line"><b>Product </b> <strong>Details</strong></span></span>
         </h4>
-        <div class="row">
+        <div class="row" id="product-details">
           <?php
             mysqli_real_escape_string($_GET['id']);
             $id = $_GET['id'];
             $productselect = "SELECT id, productname, price, descript, product_type, main_image FROM Products WHERE id = '$id'";
             $result = mysqli_query($conn, $productselect) or die($productselect);
-            //$result = mysqli_query($conn, $productselect);
+            
             if($result){
                 if(mysqli_num_rows($result) > 0){
-                    while($row = mysqli_fetch_array($result)){;
-                        // echo "<div class='col-sm'>";
-                        // <div class='card product-box mb-2'>
-                        echo "<div class='col-md-4' id='detail'><a href='product-detail.php?id={$row['id']}'><img class='card-img-top' src=";
-                        echo "'media/product/".$row['main_image']."' alt='Product image'></a></div>";
-                        echo "<div class='col-md-8'><h2><b>".$row['productname']."</b></h2>";
-                        echo "<p style='font-size: 18px;'><a href='".str_replace(' ','-',strtolower($row['product_type'])).".php' class='category'>".$row['product_type']."</a></p>";
-                        echo "<p style='font-size: 18px;'><b>Description: </b>".$row['descript']."</p>";
-                        echo "<p style='font-size: 18px;'><b>Price: </b>$".$row['price']."</p>";
-
-                        echo "<form action='cart.php' method='post'>";
-                        echo "<p style='font-size: 18px;'><b>Quantity:</b><button type=button onclick='minus()'>-</button>";
-                        echo "<input style='text-align: center; font-size: 14px;' type=text id='counter' value='0' name='".$row['id']."' onblur='updateQuantity()'>";
-                        echo "<button type='button' onclick='plus();'>+</button></p>";
-                        echo "<input type='submit' name='Add to Cart' value='Add to Cart' id='Add to Cart'><form>";
-                    }
+                    while($row = mysqli_fetch_array($result)){     
+                      if (isset($_POST['add'])){
+                        //$_SESSION['cart']['products'][$row['id']] = $_POST;
+  
+                        /*$_SESSION['cart']['products'] = $_POST;*/
+      
+                        $_SESSION['cart']['products'][$row['id']]['id'] = test_input($_POST['id']);
+                        $_SESSION['cart']['products'][$row['id']]['price'] = test_input($_POST['price']);
+                        $_SESSION['cart']['products'][$row['id']]['quantity'] = test_input($_POST['quantity']);
+      
+                        header("Location: cart.php");
+                      }          
+                    echo "<div class='col-md-4' id='detail'><a href='product-detail.php?id={$row['id']}'><img class='card-img-top' src=";
+                    echo "'media/product/".$row['main_image']."' alt='Product image'></a></div>";
+                    echo "<div class='col-md-8'><h2><b>".$row['productname']."</b></h2>";
+                    echo "<p style='font-size: 18px;'><a href='".str_replace(' ','-',strtolower($row['product_type'])).".php' class='category'>".$row['product_type']."</a></p>";
+                    echo "<p style='font-size: 18px;'><b>Description: </b>".$row['descript']."</p>";
+                    echo "<p style='font-size: 18px;'><b>Price: </b>$".$row['price']."</p>";
+                
+                    echo "<form action='' method='post'>";
+                    echo "<input type='hidden' name='id' value='".$row['id']."'>";
+                    echo "<input type='hidden' name='price' value='".$row['price']."'>";
+                    echo "<button type=button onclick='minus()'>-</button>";
+                    echo "<input style='text-align: center;' type=text id='quantity' value='0' name='quantity' onblur='updateQuantity()'>";
+                    echo "<button type=button onclick='plus()'>+</button><br><br>";
+                    echo "<input type='submit' name='session-reset' value='Reset the session' id='session-reset'>";
+                    echo "<input type='submit' name='add' value='Add to Cart' id='Add to Cart'></form>";        
+                }
                     // Free result set
                     // mysqli_free_result($result);
                 } else{
@@ -149,15 +164,15 @@
           <div class="col-md-4">
             <h4>User</h4>
             <ul>
-              <li><a href="#">Login</a></li>
-              <li><a href="#">Cart</a></li>
+              <li><a href="login.php">Login</a></li>
+              <li><a href="cart.php">Cart</a></li>
             </ul>
           </div>
           <div class="col-md-5">
             <p><img src="media/theme/logo.png" class="site_logo" alt=""></p>
-            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. the Lorem Ipsum has been the
-              industry's standard dummy text ever since the you.</p>
-            <br />
+            - Assignment by Group 17: <br> 
+            Vo An Huy (s3804220 - <a href="https://github.com/s3804220/s3804220.github.io" class="git-link" target="_blank">GithubRepo</a>),
+            <br>Doan Nguyen My Hanh (s3639869 - <a href="https://github.com/s3639869/wp" class="git-linktarget="_blank">Github Repo</a>)
           </div>
         </div>
       </section>

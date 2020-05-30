@@ -1,13 +1,10 @@
 <!DOCTYPE html>
-<html lang='en'>
+<html lang="en">
 
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Login</title>
-
-  <!-- Keep wireframe.css for debugging, add your css to style.css -->
-  <link id='wireframecss' type="text/css" rel="stylesheet" href="../wireframe.css" disabled>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product Management</title>
 
   <!-- Add bootstrap-->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
@@ -23,40 +20,30 @@
     crossorigin="anonymous"></script>
 
 
+  <!-- Link to web icon-->
+  <!-- Creative Commons image sourced from https://www.freelogodesign.org and used for educational purposes only -->
+  <link rel="icon" href="media/theme/icon.png">
+
   <!-- Link to style.css -->
   <link id='stylecss' type="text/css" rel="stylesheet" href="style.css">
 
-  <!-- Link to web font-->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Slab">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
-
-    <!-- Link to web icon-->
-  <!-- Creative Commons image sourced from https://www.freelogodesign.org and used for educational purposes only -->
-  <link rel="icon" href="media/theme/icon.png">
-  <script src='../wireframe.js'></script>
-
-  <!-- Link to script.js -->
-  <script defer src="script.js"></script>
-
-  <!-- Link to tools.php -->
-  <?php include 'tools.php';?>
+  <!-- Link to other php files -->
   <?php include 'database.php';?>
-
+  <?php include 'tools.php';?>
 </head>
 
 <body>
   <?php
-    if(!empty($_SESSION['admin'])){
-      header('Location: controlpanel.php');
-    }
+    if(empty($_SESSION['admin'])){
+      header('Location: index.php');
+  }
   ?>
   <div class="container">
     <nav id="top-bar" class="navbar navbar-expand-sm shadow">
       <a class="navbar-brand" href="index.php"><img src="media/theme/logo.png" alt="Shop logo"></a>
       <ul class="nav nav-pills ml-auto user-menu">
         <li class="nav-item">
-          <a class="nav-link btn btn-primary" href="index.php">Homes</a>
+          <a class="nav-link btn btn-primary" href="index.php">Home</a>
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
@@ -70,42 +57,65 @@
           </div>
         </li>
         <li class="nav-item">
-          <a class="nav-link btn btn-primary" href="cart">Cart</a>
+          <a class="nav-link btn btn-primary" href="cart.php">Cart</a>
         </li>
-        <?php
-            if(empty($_SESSION['admin'])){
-              echo "<li class='nav-item'><a class='nav-link btn btn-primary' href='login.php'>Login</a></li>";
-            }
-            else {
-              echo "<li class='nav-item'><a class='nav-link btn btn-primary' href='controlpanel.php'>Control panel</a></li>";
-              echo "<li class='nav-item'><a class='nav-link btn btn-primary' href='logout.php'>Logout</a></li>"; 
-            }
-          ?>
+        <li class='nav-item'><a class='nav-link btn btn-primary' href='controlpanel.php'>Control panel</a></li>
+        <li class='nav-item'><a class='nav-link btn btn-primary' href='logout.php'>Logout</a></li>
       </ul>
     </nav>
     <img class="img-fluid" src="media/theme/mask-banner.jpg" alt="Mask banner">
     <div id="wrapper">
       <section class="header_text sub">
-        <h4><span>Login</span></h4>
+        <h4><span>Add a product</span></h4>
       </section>
-      <h4 class="title"><span class="text"><strong>Login</strong> Form</span></h4>
-      <form action="#" method="POST" id="login-form">
-        <fieldset>
-          <div class="form-group">
-            <label for="userid">Username</label>
-            <input type="text" placeholder="Enter your user ID" id="userid" name="userid">
-          </div>
-          <div class="form-group">
-            <label for="password">Password</label>
-            <input type="password" placeholder="Enter your password" id="password" name="password">
-          </div>
-          <?php echo $loginmsg ?>
-          <div class="form-group">
-            <input class="btn btn-primary btn-dark" type="submit" value="Sign into your account" id="login-btn" name="login">
-          </div>
-        </fieldset>
+
+      <form action="" method="POST" id="add-form" enctype="multipart/form-data">
+        <p style="padding-left: 20px;">Please fill in all information below for a product</p>
+        <div class="form-group">
+          <label for="product-id">Product ID</label>
+          <input type="text" name="product[id]" id="product-id" value ="<?php echo isset($_POST['product']['id']) ? $_POST['product']['id'] : ''; ?>">
+          <?php echo $addpiderr ?>
+        </div>
+        <div class="form-group">
+          <label for="product-name">Name</label>
+          <input type="text" name="product[name]" id="product-name" value ="<?php echo isset($_POST['product']['name']) ? $_POST['product']['name'] : ''; ?>">
+          <?php echo $addpnameerr ?>
+        </div>
+        <div class="form-group">
+          <label for="product-des">Description</label>
+          <textarea rows="5" cols="50" name="product[des]" form="add-form" id="product-des"><?php echo isset($_POST['product']['des']) ? $_POST['product']['des'] : ''; ?></textarea>
+          <?php echo $addpdeserr ?>
+        </div>
+        <div class="form-group">
+          <label for="product-type">Product Category</label>
+          <select name="product[type]" id="product-type">
+          <?php
+            foreach($categoryarray as $cate){
+              echo "<option value='".$cate."'";
+              if (isset($_POST['product']['type'])){
+                if ($cate == $_POST['product']['type']){
+                  echo "selected='selected'";
+                }
+              }
+              echo ">".$cate."</option>";
+            }
+          ?>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="product-name">Price</label>
+          <input type="text" name="product[price]" id="product-price" value ="<?php echo isset($_POST['product']['price']) ? $_POST['product']['price'] : ''; ?>">
+          <?php echo $addpriceerr ?>
+        </div>
+        <div class="form-group">
+          <label for="product-img">Upload images</label>
+          <input type="file" name="productimg[]" id="product-img" accept="image/*" multiple>
+          <?php echo $addimgerr ?>
+        </div>
+        <div class="form-group">
+          <input class="btn btn-primary btn-dark" type="submit" name="addproduct" value="Add Product" id="addproduct">
+        </div>
       </form>
-      <hr>
     </div>
     <footer>
       <a href="#top-bar"><img id="TopBtn" src="media/theme/gotop.png" alt="Back to Top"></a>

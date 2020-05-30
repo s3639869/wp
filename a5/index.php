@@ -70,8 +70,8 @@
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <?php
-            foreach($categoryarray as $num => $cate){
-              echo "<a class='dropdown-item' href='".str_replace(' ','-',strtolower($cate['product_type'])).".php'>".$cate['product_type']."</a>";
+            foreach($categoryarray as $cate){
+              echo "<a class='dropdown-item' href='".str_replace(' ','-',strtolower($cate)).".php'>".$cate."</a>";
             }
           ?>
           </div>
@@ -175,40 +175,6 @@
                     echo "<p class='price'>$".$info['price']."</p></div></div></div>";
                   }
                 ?>
-                <!-- <div class="col-md-4">
-                  <div class="card product-box mb-2">
-                    <a href="product_detail.html"><img class="card-img-top" src="media/product/1.jpg"
-                        alt="Product image"></a>
-                    <div class="card-body">
-                      <a href="product_detail.html" class="title">Ut wisi enim ad</a><br />
-                      <a href="products.html" class="category">Commodo consequat</a>
-                      <p class="price">$17.25</p>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-4">
-                  <div class="card product-box mb-2">
-                    <a href="product_detail.html"><img class="card-img-top" src="media/product/1.jpg"
-                        alt="Product image"></a>
-                    <div class="card-body">
-                      <a href="product_detail.html" class="title">Ut wisi enim ad</a><br />
-                      <a href="products.html" class="category">Commodo consequat</a>
-                      <p class="price">$17.25</p>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-4">
-                  <div class="card product-box mb-2">
-                    <a href="product_detail.html"><img class="card-img-top" src="media/product/1.jpg"
-                        alt="Product image"></a>
-                    <div class="card-body">
-                      <a href="product_detail.html" class="title">Ut wisi enim ad</a><br />
-                      <a href="products.html" class="category">Commodo consequat</a>
-                      <p class="price">$17.25</p>
-                    </div>
-                  </div>
-                </div> -->
-
               </div>
 
             </div>
@@ -223,8 +189,9 @@
               $productarray[] = $row;
             }
             foreach ($productarray as $num => $info){
+              $imgarray = explode("|",$info['main_image']);
               echo "<div class='col-md-4'><div class='card product-box mb-2'><a href='product-detail.php?id={$info['id']}'><img class='card-img-top' src=";
-              echo "'media/product/".$info['main_image']."' alt='Product image'></a>";
+              echo "'media/product/".$imgarray[0]."' alt='Product image'></a>";
               echo "<div class='card-body'><a href='product-detail.php?id={$info['id']}' class='title'>".$info['productname']."</a><br>";
               echo "<a href='".str_replace(' ','-',strtolower($info['product_type'])).".php' class='category'>".$info['product_type']."</a>";
               echo "<p class='price'>$".$info['price']."</p></div></div></div>";
@@ -299,14 +266,14 @@
             <h4>User</h4>
             <ul>
               <li><a href="login.php">Login</a></li>
-              <li><a href="#">Cart</a></li>
+              <li><a href="cart.php">Cart</a></li>
             </ul>
           </div>
           <div class="col-md-5">
             <p><img src="media/theme/logo.png" class="site_logo" alt=""></p>
-            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. the Lorem Ipsum has been the
-              industry's standard dummy text ever since the you.</p>
-            <br />
+            - Assignment by Group 17: <br> 
+            Vo An Huy (s3804220 - <a href="https://github.com/s3804220/s3804220.github.io" class="git-link" target="_blank">GithubRepo</a>),
+            <br>Doan Nguyen My Hanh (s3639869 - <a href="https://github.com/s3639869/wp" class="git-linktarget="_blank">Github Repo</a>)
           </div>
         </div>
       </section>

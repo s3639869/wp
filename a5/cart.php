@@ -89,9 +89,73 @@
     </nav>
     <img class="img-fluid" src="media/theme/mask-banner.jpg" alt="Mask banner">
     <div id="wrapper">
-      <?php
-        echo $_SESSION;
+    <h4 class="title">
+     <?php
+        // preshow($_SESSION);
+        // preShow($_POST);
       ?>
+      <span class="text"><span class="line"><b>Your</b> <strong>Cart</strong></span></span>
+    </h4>
+    <?php
+      echo "<table style='width: 100%; font-size: 18px;'><tr>";
+      echo "<th style='text-align: center;'>Product Image</th>";
+      echo "<th style='text-align: center;'>Product Name</th>";
+      echo "<th style='text-align: center;'>Product Type</th>";
+      echo "<th style='text-align: center;'>Unit Price</th>";
+      echo "<th style='text-align: center;'>Quantity</th>";
+      echo "</tr>";
+    
+      foreach ($_SESSION['cart']['products'] as $products => $product){
+        if ($product['quantity'] > 0){
+          $productID = $product['id'];
+          mysqli_real_escape_string($conn, $productID);
+          $productCart = "SELECT id, productname, price, descript, product_type, main_image FROM Products WHERE id = '$productID'";
+          $resultCart = mysqli_query($conn, $productCart) or die($productCart);
+          if($resultCart){
+            if(mysqli_num_rows($resultCart) > 0){
+                while($row = mysqli_fetch_array($resultCart)){
+                  echo "<tr><td style='text-align: center;'><img style='width:110px; height:90px;' src=";
+                  echo "'media/product/".$row['main_image']."' alt='Product image'></td>";
+                  echo "<td style='text-align: center;'>".$row['productname']."</td>";
+                  echo "<td style='text-align: center;'>".$row['product_type']."</td>";
+                  echo "<td style='text-align: center;'>".$row['price']."</td>";
+                  echo "<td style='text-align: center;'>".$product['quantity']."</td>";
+                  calcTotal((float)$row['price'], (float)$product['qty']);
+                }
+            }
+            else{
+                echo "No records matching your query were found.";
+              }
+          } 
+          else{
+              echo "ERROR: Could not able to execute $resultCart. " . mysqli_error($conn);
+          }
+        }
+      }
+      echo "<tr><td colspan='4' style='text-align: center;'><b>Grand Total: </b></td>";
+      echo "<td style='text-align: center;'><b>$ ".calcTotalSession()."<b></tr>";
+      echo "</table>";
+      ?>
+      <br><br><br>
+      <h4 class="title">
+      <span class="text"><span class="line"><b>Checkout</b> <strong>Information</strong></span></span>
+      </h4>
+      <p style="font-size: 15px;" class="require"> * Please Enter Your Name, Australian Phone Number and Address</p>
+      <div class="form-group">
+        <label for="cust-name" style="text-align: left;">Name <span class="require">*</span></label>
+        <input type="name" name="cust[name]" id="name" style="width: 100%;" required oninput="checkCustInfo()">
+      </div>
+      <div class="form-group">
+        <label for="cust-mobile" style="text-align: left;">Mobile <span class="require">*</span></label>
+        <input type="tel" name="cust[mobile]" id="mobile" style="width: 100%;" required oninput="checkCustInfo()">
+      </div>
+      <div class="form-group">
+        <label for="cust-address" style="text-align: left;">Address <span class="require">*</span></label>
+        <input type="text" name="cust[address]" id="address" style="width: 100%;" required oninput="checkCustInfo()">
+      </div>
+      <input type="button" name="order" value="Order" id="order" onclick="displayThank()" disabled>
+
+
     </div>
     <footer>
       <a href="#top-bar"><img id="TopBtn" src="media/theme/gotop.png" alt="Back to Top"></a>
@@ -109,15 +173,15 @@
           <div class="col-md-4">
             <h4>User</h4>
             <ul>
-              <li><a href="#">Login</a></li>
-              <li><a href="#">Cart</a></li>
+              <li><a href="login.php">Login</a></li>
+              <li><a href="cart.php">Cart</a></li>
             </ul>
           </div>
           <div class="col-md-5">
             <p><img src="media/theme/logo.png" class="site_logo" alt=""></p>
-            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. the Lorem Ipsum has been the
-              industry's standard dummy text ever since the you.</p>
-            <br />
+            - Assignment by Group 17: <br> 
+            Vo An Huy (s3804220 - <a href="https://github.com/s3804220/s3804220.github.io" class="git-link" target="_blank">GithubRepo</a>),
+            <br>Doan Nguyen My Hanh (s3639869 - <a href="https://github.com/s3639869/wp" class="git-linktarget="_blank">Github Repo</a>)
           </div>
         </div>
       </section>

@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Login</title>
+  <title>Product management</title>
 
   <!-- Keep wireframe.css for debugging, add your css to style.css -->
   <link id='wireframecss' type="text/css" rel="stylesheet" href="../wireframe.css" disabled>
@@ -34,7 +34,6 @@
     <!-- Link to web icon-->
   <!-- Creative Commons image sourced from https://www.freelogodesign.org and used for educational purposes only -->
   <link rel="icon" href="media/theme/icon.png">
-  <script src='../wireframe.js'></script>
 
   <!-- Link to script.js -->
   <script defer src="script.js"></script>
@@ -47,16 +46,16 @@
 
 <body>
   <?php
-    if(!empty($_SESSION['admin'])){
-      header('Location: controlpanel.php');
-    }
+    if(empty($_SESSION['admin'])){
+      header('Location: index.php');
+  }
   ?>
   <div class="container">
     <nav id="top-bar" class="navbar navbar-expand-sm shadow">
       <a class="navbar-brand" href="index.php"><img src="media/theme/logo.png" alt="Shop logo"></a>
       <ul class="nav nav-pills ml-auto user-menu">
         <li class="nav-item">
-          <a class="nav-link btn btn-primary" href="index.php">Homes</a>
+          <a class="nav-link btn btn-primary" href="index.php">Home</a>
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
@@ -70,41 +69,26 @@
           </div>
         </li>
         <li class="nav-item">
-          <a class="nav-link btn btn-primary" href="cart">Cart</a>
+          <a class="nav-link btn btn-primary" href="cart.php">Cart</a>
         </li>
-        <?php
-            if(empty($_SESSION['admin'])){
-              echo "<li class='nav-item'><a class='nav-link btn btn-primary' href='login.php'>Login</a></li>";
-            }
-            else {
-              echo "<li class='nav-item'><a class='nav-link btn btn-primary' href='controlpanel.php'>Control panel</a></li>";
-              echo "<li class='nav-item'><a class='nav-link btn btn-primary' href='logout.php'>Logout</a></li>"; 
-            }
-          ?>
+        <li class='nav-item'><a class='nav-link btn btn-primary' href='controlpanel.php'>Control panel</a></li>
+        <li class='nav-item'><a class='nav-link btn btn-primary' href='logout.php'>Logout</a></li>
       </ul>
     </nav>
     <img class="img-fluid" src="media/theme/mask-banner.jpg" alt="Mask banner">
     <div id="wrapper">
       <section class="header_text sub">
-        <h4><span>Login</span></h4>
+        <h4><span>Manage your products</span></h4>
       </section>
-      <h4 class="title"><span class="text"><strong>Login</strong> Form</span></h4>
-      <form action="#" method="POST" id="login-form">
-        <fieldset>
-          <div class="form-group">
-            <label for="userid">Username</label>
-            <input type="text" placeholder="Enter your user ID" id="userid" name="userid">
-          </div>
-          <div class="form-group">
-            <label for="password">Password</label>
-            <input type="password" placeholder="Enter your password" id="password" name="password">
-          </div>
-          <?php echo $loginmsg ?>
-          <div class="form-group">
-            <input class="btn btn-primary btn-dark" type="submit" value="Sign into your account" id="login-btn" name="login">
-          </div>
-        </fieldset>
-      </form>
+      <div id="admin-activity">
+        <p style="font-size: 16px;">Hello <em>admin,</em>
+        <br>
+        you can add, update or delete information on your products here.
+        <br>What would you like to do?</p>
+        <a href="addprod.php"><button type="button" class="btn btn-success">Add new product</button></a><br><br>
+        <a href="updateprod.php"><button type="button" class="btn btn-warning">Update a product</button></a><br><br>
+        <a href="deleteprod.php"><button type="button" class="btn btn-danger">Delete a product</button></a>
+      </div>
       <hr>
     </div>
     <footer>
@@ -114,10 +98,10 @@
           <div class="col-md-3">
             <h4>Navigation</h4>
             <ul>
-            <li><a href="index.php">Home</a></li>
-            <li><a href="bandana.php">Bandanas</a></li>
-            <li><a href="medical-mask.php">Medical Mask</a></li>
-            <li><a href="dust-mask.php">Dust Mask</a></li>
+              <li><a href="index.php">Home</a></li>
+              <li><a href="bandana.php">Bandanas</a></li>
+              <li><a href="medical-mask.php">Medical Mask</a></li>
+              <li><a href="dust-mask.php">Dust Mask</a></li>
             </ul>
           </div>
           <div class="col-md-4">
